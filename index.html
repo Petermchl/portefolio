@@ -291,7 +291,60 @@ nav {
 .ft-status-dot::after { content:''; position:absolute; inset:-2px; border-radius:50%; border:1px solid #1a1a1a; }
 .ft-status-text { font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:#333; }
 
-/* PROJECT DOC LINK */
+/* SYNTHESE BTS */
+.synthese-section { padding:110px 52px; background:var(--off); }
+.synthese-iframe-wrap {
+  width:100%; border:1px solid var(--line);
+  background:var(--white); position:relative;
+  box-shadow:0 2px 24px rgba(0,0,0,.04);
+}
+.synthese-iframe-wrap iframe {
+  width:100%; height:700px; border:none; display:block;
+}
+
+/* VEILLE TECHNOLOGIQUE */
+.veille-section { padding:110px 52px; background:var(--black); color:var(--white); }
+.veille-section .section-label { color:#444; }
+.veille-section .section-label::before { color:#222; }
+.veille-section .section-label::after { background:#222; }
+.veille-header { margin-bottom:70px; }
+.veille-title { font-family:'Bodoni Moda',serif; font-size:clamp(2.5rem,4vw,4rem); line-height:1.05; letter-spacing:.02em; }
+.veille-title em { font-style:italic; }
+.veille-intro { font-size:1rem; line-height:1.9; color:#888; margin-top:20px; max-width:600px; }
+.veille-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#1a1a1a; border:1px solid #1a1a1a; }
+.veille-card {
+  background:var(--black); padding:40px 34px 34px;
+  display:flex; flex-direction:column; gap:14px;
+  transition:background .3s; text-decoration:none; color:var(--white);
+  position:relative; overflow:hidden;
+}
+.veille-card:hover { background:#0f0f0f; }
+.veille-card:hover .veille-card-arrow { color:var(--white); }
+.veille-card-cat {
+  font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.3em;
+  text-transform:uppercase; color:#555;
+}
+.veille-card-title {
+  font-family:'Cormorant',serif; font-size:1.4rem; font-style:italic; line-height:1.2;
+}
+.veille-card-desc { font-size:.92rem; line-height:1.85; color:#777; flex:1; }
+.veille-card-url {
+  font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.18em;
+  text-transform:uppercase; color:#444; border-top:1px solid #1a1a1a;
+  padding-top:14px; margin-top:4px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.veille-card-arrow { color:#333; font-size:1rem; transition:color .25s; }
+.veille-card-num {
+  position:absolute; top:16px; right:22px;
+  font-family:'Bodoni Moda',serif; font-style:italic; font-size:3rem; color:#111; line-height:1;
+}
+
+@media (max-width:900px) {
+  .synthese-section,.veille-section { padding:70px 24px; }
+  .veille-grid { grid-template-columns:1fr; }
+  .synthese-iframe-wrap iframe { height:420px; }
+}
 .project-doc-link {
   display:inline-flex; align-items:center; gap:7px;
   font-family:'EB Garamond',serif; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase;
@@ -348,6 +401,8 @@ nav {
     <li><a href="#skills">Compétences</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#synthese">Synthèse BTS</a></li>
+    <li><a href="#veille">Veille</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-year">2024 — 2026</div>
@@ -512,6 +567,98 @@ nav {
 </section>
 
 
+<!-- SYNTHESE BTS -->
+<section class="synthese-section section" id="synthese">
+  <div class="section-label" data-n="05">Synthèse BTS</div>
+  <h2 class="projects-title reveal">Tableau de <em>synthèse</em></h2>
+  <p style="font-size:.95rem;line-height:1.9;color:var(--mid);margin-bottom:42px;max-width:680px;" class="reveal">
+    Récapitulatif des compétences et réalisations validées dans le cadre de l'épreuve E5 du BTS SIO 2026.
+  </p>
+  <div class="synthese-iframe-wrap reveal">
+    <iframe
+      src="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/edit?usp=drive_link&ouid=102313380074112588986&rtpof=true&sd=true"
+      title="Tableau de synthèse BTS SIO E5 2026"
+      loading="lazy"
+      id="synthese-frame"
+    ></iframe>
+    <noscript>
+      <p style="padding:24px;font-family:'EB Garamond',serif;color:var(--gray);">
+        Le tableau nécessite JavaScript pour s'afficher.
+        <a href="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/edit?usp=drive_link&ouid=102313380074112588986&rtpof=true&sd=true" download>Télécharger le fichier XLSX</a>
+      </p>
+    </noscript>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 20px;background:var(--white);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-family:'EB Garamond',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);">Épreuve E5 · BTS SIO 2026</span>
+      <a href="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/edit?usp=drive_link&ouid=102313380074112588986&rtpof=true&sd=true" download
+        style="font-family:'EB Garamond',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--black);text-decoration:none;display:flex;align-items:center;gap:7px;border:1px solid var(--line);padding:7px 14px;transition:background .25s,color .25s;"
+        onmouseover="this.style.background='#080808';this.style.color='#fff';"
+        onmouseout="this.style.background='';this.style.color='#080808';">
+        ↓ Télécharger XLSX
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VEILLE TECHNOLOGIQUE -->
+<section class="veille-section" id="veille">
+  <div class="section-label" data-n="06">Veille Technologique</div>
+  <div class="veille-header reveal">
+    <h2 class="veille-title">Nouvelles technologies<br><em>dans le sport automobile et autres</em></h2>
+    <p class="veille-intro">Sélection de ressources et publications sur les innovations technologiques qui transforment la compétition automobile : données, électrique, simulation et intelligence artificielle ainsi que dans le monde de la musique.</p>
+  </div>
+  <div class="veille-grid">
+
+    <a href="https://www.racecar-engineering.com" target="_blank" rel="noopener" class="veille-card reveal">
+      <div class="veille-card-num">I</div>
+      <div class="veille-card-cat">Sport Auto · Ingénierie</div>
+      <div class="veille-card-title">Racecar Engineering</div>
+      <div class="veille-card-desc">Revue spécialisée couvrant l'ingénierie des voitures de course : systèmes de données, matériaux composites, électronique embarquée et simulation.</div>
+      <div class="veille-card-url">racecar-engineering.com <span class="veille-card-arrow">↗</span></div>
+    </a>
+
+    <a href="https://www.fiaformulae.com/en/news" target="_blank" rel="noopener" class="veille-card reveal">
+      <div class="veille-card-num">II</div>
+      <div class="veille-card-cat">Sport Auto · Électrique</div>
+      <div class="veille-card-title">Formula E — Actualités</div>
+      <div class="veille-card-desc">Le championnat 100 % électrique de la FIA : innovations en gestion de batterie, récupération d'énergie et développements qui préfigurent la mobilité de demain.</div>
+      <div class="veille-card-url">fiaformulae.com <span class="veille-card-arrow">↗</span></div>
+    </a>
+
+    <a href="https://www.lechaletstudio.fr/lia-dans-la-musique-en-2026-revolution-menace-ou-opportunite/" target="_blank" rel="noopener" class="veille-card reveal">
+      <div class="veille-card-num">III</div>
+      <div class="veille-card-cat">IA · Création musicale</div>
+      <div class="veille-card-title">L'IA dans la musique en 2026</div>
+      <div class="veille-card-desc">Analyse complète des outils génératifs comme Suno et Udio qui permettent de créer des morceaux complets sans formation musicale, et leur impact sur l'industrie.</div>
+      <div class="veille-card-url">lechaletstudio.fr <span class="veille-card-arrow">↗</span></div>
+    </a>
+
+    <a href="https://www.ampedstudio.com/fr/blog/ai-in-music-production/" target="_blank" rel="noopener" class="veille-card reveal">
+      <div class="veille-card-num">IV</div>
+      <div class="veille-card-cat">IA · Production</div>
+      <div class="veille-card-title">IA en production musicale — Guide 2026</div>
+      <div class="veille-card-desc">Séparation de pistes, mastering assisté, mixage spectral : tour d'horizon des outils IA professionnels (Demucs, UVR, Suno v5) et leurs limites actuelles.</div>
+      <div class="veille-card-url">ampedstudio.com <span class="veille-card-arrow">↗</span></div>
+    </a>
+
+    <a href="https://fr.wikipedia.org/wiki/Apple_Music" target="_blank" rel="noopener" class="veille-card reveal">
+      <div class="veille-card-num">V</div>
+      <div class="veille-card-cat">Apple · Streaming</div>
+      <div class="veille-card-title">Apple Music — Évolutions 2025–2026</div>
+      <div class="veille-card-desc">Playlist Playground (génération par IA depuis iOS 26.4), AutoMix, épinglage de contenu, dossiers de playlists : toutes les nouvelles fonctionnalités d'Apple Music.</div>
+      <div class="veille-card-url">wikipedia.org <span class="veille-card-arrow">↗</span></div>
+    </a>
+
+    <a href="https://www.guitarbrands.org/smart-guitar-brands-and-technology/" target="_blank" rel="noopener" class="veille-card reveal">
+      <div class="veille-card-num">VI</div>
+      <div class="veille-card-cat">Instruments · Guitares</div>
+      <div class="veille-card-title">Smart Guitars — Top 12 marques 2025</div>
+      <div class="veille-card-desc">HyVibe, LAVA Music, Yamaha, Line 6 : les guitares intelligentes intègrent DSP, Bluetooth, effets embarqués, feedback LED et apprentissage IA en temps réel.</div>
+      <div class="veille-card-url">guitarbrands.org <span class="veille-card-arrow">↗</span></div>
+    </a>
+
+  </div>
+</section>
+
 <!-- FOOTER — Inspired by Maison Margiela -->
 <footer class="ft">
 
@@ -534,6 +681,8 @@ nav {
         <a href="#skills" class="ft-nav-item">Compétences</a>
         <a href="#projects" class="ft-nav-item">Projets</a>
         <a href="#parcours" class="ft-nav-item">Parcours</a>
+        <a href="#synthese" class="ft-nav-item">Synthèse BTS</a>
+        <a href="#veille" class="ft-nav-item">Veille Techno</a>
         <a href="#contact" class="ft-nav-item">Contact</a>
         <a href="#" class="ft-nav-item">CV PDF</a>
       </div>
