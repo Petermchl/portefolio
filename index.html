@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — BTS SIO</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --black: #080808;
+  --white: #ffffff;
+  --off: #f8f8f8;
+  --gray: #999;
+  --mid: #555;
+  --line: #e0e0e0;
+}
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'EB Garamond', serif;
+  overflow-x: hidden;
+  cursor: var(--white);
+}
+
+/* TOPBAR TICKER */
+.topbar {
+  position: fixed; top:0; left:0; right:0; z-index:300;
+  background: var(--black); color: var(--white);
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.topbar-track {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+}
+.topbar-track span {
+  display: inline-block;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.58rem; letter-spacing: .3em; text-transform: uppercase;
+  padding: 0 36px;
+}
+.topbar-track span::after { content: '·'; margin-left: 36px; color: #444; }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* NAV */
+nav {
+  position:fixed; top:36px; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 52px; height:64px;
+  background:rgba(255,255,255,0.97); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-brand { font-family:'Bodoni Moda',serif; font-size:1rem; letter-spacing:.14em; text-transform:uppercase; }
+.nav-brand span { font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.25em; color:var(--gray); display:block; margin-top:1px; }
+.nav-links { display:flex; gap:38px; list-style:none; }
+.nav-links a { font-family:'EB Garamond',serif; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; text-decoration:none; color:var(--black); position:relative; }
+.nav-links a::after { content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--black); transition:width .3s ease; }
+.nav-links a:hover::after { width:100%; }
+.nav-year { font-family:'EB Garamond',serif; font-size:.65rem; letter-spacing:.2em; color:var(--gray); }
+
+/* HERO */
+.hero { height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:100px; overflow:hidden; }
+.hero-left { display:flex; flex-direction:column; justify-content:flex-end; padding:70px 52px; position:relative; }
+.hero-eyebrow { font-family:'EB Garamond',serif; font-size:.68rem; letter-spacing:.35em; text-transform:uppercase; color:var(--gray); margin-bottom:28px; display:flex; align-items:center; gap:14px; }
+.hero-eyebrow::before { content:''; width:30px; height:1px; background:var(--gray); }
+.hero-name { font-family:'Bodoni Moda',serif; font-size:clamp(3.2rem,5.5vw,5.8rem); line-height:1.0; letter-spacing:.02em; font-weight:400; animation:fadeUp 1s ease forwards; opacity:0; transform:translateY(20px); }
+.hero-name em { font-style:italic; display:block; }
+.hero-role { font-family:'EB Garamond',serif; font-size:.75rem; letter-spacing:.28em; text-transform:uppercase; color:var(--mid); margin-top:28px; padding-top:22px; border-top:1px solid var(--line); animation:fadeUp 1.2s .15s ease forwards; opacity:0; transform:translateY(20px); }
+.hero-scroll { position:absolute; bottom:50px; left:52px; font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gray); display:flex; align-items:center; gap:12px; animation:fadeUp 1.4s .3s ease forwards; opacity:0; }
+.hero-scroll::after { content:''; width:40px; height:1px; background:var(--gray); }
+.hero-right { position:relative; overflow:hidden; }
+.hero-img { width:100%; height:100%; object-fit:cover; object-position:center; filter:grayscale(20%); animation:imgReveal 1.4s .1s cubic-bezier(.4,0,.2,1) forwards; opacity:0; transform:scale(1.06); }
+.hero-img-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(255,255,255,.12) 0%,transparent 40%); pointer-events:none; }
+.hero-counter { position:absolute; bottom:40px; right:36px; font-family:'Bodoni Moda',serif; font-style:italic; font-size:4rem; color:rgba(255,255,255,.18); line-height:1; }
+
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+@keyframes imgReveal { to { opacity:1; transform:scale(1); } }
+
+/* SECTION */
+.section { padding:110px 52px; }
+.section-label { font-family:'EB Garamond',serif; font-size:.62rem; letter-spacing:.38em; text-transform:uppercase; color:var(--gray); display:flex; align-items:center; gap:16px; margin-bottom:64px; }
+.section-label::before { content:attr(data-n); font-family:'Bodoni Moda',serif; font-style:italic; font-size:1rem; color:var(--line); }
+.section-label::after { content:''; flex:1; max-width:50px; height:1px; background:var(--line); }
+
+/* ABOUT */
+.about-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 0;
+  align-items: start;
+  margin-bottom: 0;
+}
+.about-text-col {
+  padding: 60px 80px 60px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.about-season {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.7rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 32px;
+}
+.about-heading {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  line-height: 1.25; font-weight: 400;
+  margin-bottom: 32px;
+}
+.about-heading em { font-style: italic; }
+.about-text {
+  font-size: 1.05rem; line-height: 2; color: var(--mid);
+  margin-bottom: 20px; text-align: center;
+}
+.about-photo-wrap { position: relative; }
+.about-photo { width:100%; aspect-ratio:3/4; object-fit:cover; filter:grayscale(10%); display:block; }
+.about-photo-caption {
+  position:absolute; bottom:0; left:0; right:0;
+  background:var(--white); padding:14px 20px;
+  border-top:1px solid var(--line);
+  font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gray);
+  display:flex; justify-content:space-between;
+}
+.about-info-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--line); border: 1px solid var(--line);
+  margin-top: 2px;
+}
+.info-cell { background:var(--white); padding:22px 26px; }
+.info-cell-label { font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gray); margin-bottom:6px; }
+.info-cell-val { font-family:'Cormorant',serif; font-size:1.1rem; font-style:italic; }
+
+/* SKILLS */
+.skills-section { background:var(--black); color:var(--white); padding:110px 52px; }
+.skills-section .section-label { color:#444; }
+.skills-section .section-label::before { color:#222; }
+.skills-section .section-label::after { background:#222; }
+.skills-header { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end; margin-bottom:80px; }
+.skills-title { font-family:'Bodoni Moda',serif; font-size:clamp(2.5rem,4vw,4rem); line-height:1.05; letter-spacing:.02em; }
+.skills-title em { font-style:italic; }
+.skills-intro { font-size:1rem; line-height:1.9; color:#888; }
+.skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#1a1a1a; }
+.skill-card { background:var(--black); padding:44px 36px; transition:background .3s; position:relative; overflow:hidden; }
+.skill-card:hover { background:#0f0f0f; }
+.skill-num { font-family:'Bodoni Moda',serif; font-style:italic; font-size:3.5rem; color:#171717; position:absolute; top:14px; right:22px; line-height:1; }
+.skill-name { font-family:'Cormorant',serif; font-size:1.5rem; font-style:italic; margin-bottom:10px; }
+.skill-desc { font-size:.9rem; line-height:1.85; color:#777; margin-bottom:24px; }
+.skill-tags { display:flex; flex-wrap:wrap; gap:7px; }
+.skill-tag { font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; padding:5px 13px; border:1px solid #252525; color:#555; }
+
+/* PROJECTS */
+.projects-section { padding:110px 52px; background:var(--off); }
+.projects-title { font-family:'Bodoni Moda',serif; font-style:italic; font-size:clamp(2.8rem,5vw,5rem); letter-spacing:.02em; margin-bottom:70px; }
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); }
+.project-card { background:var(--white); position:relative; overflow:hidden; display:flex; flex-direction:column; cursor:pointer; transition:background .3s; }
+.project-card:hover { background:#fafafa; }
+.project-card:hover .project-img { transform:scale(1.04); }
+.project-img-wrap { width:100%; aspect-ratio:16/9; overflow:hidden; position:relative; }
+.project-img { width:100%; height:100%; object-fit:cover; filter:grayscale(25%); transition:transform .5s cubic-bezier(.4,0,.2,1); }
+.project-img-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.35) 0%,transparent 60%); }
+.project-num-overlay { position:absolute; bottom:16px; right:18px; font-family:'Bodoni Moda',serif; font-style:italic; font-size:2.5rem; color:rgba(255,255,255,.5); line-height:1; }
+.project-body { padding:32px 36px 36px; flex:1; display:flex; flex-direction:column; }
+.project-cat { font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gray); margin-bottom:12px; }
+.project-title { font-family:'Cormorant',serif; font-size:1.55rem; font-style:italic; line-height:1.2; margin-bottom:10px; }
+.project-desc { font-size:.95rem; line-height:1.8; color:var(--mid); flex:1; margin-bottom:20px; }
+.project-stack { display:flex; flex-wrap:wrap; gap:8px; }
+.project-tech { font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; padding:5px 13px; border:1px solid var(--line); }
+.project-arrow { position:absolute; top:18px; right:18px; width:36px; height:36px; background:var(--white); display:flex; align-items:center; justify-content:center; font-size:.8rem; border:1px solid var(--line); transition:background .25s,color .25s; }
+.project-card:hover .project-arrow { background:var(--black); color:var(--white); border-color:var(--black); }
+
+/* PARCOURS */
+.parcours-section { padding:110px 52px; }
+.parcours-wrap { display:grid; grid-template-columns:1fr 1.6fr; gap:100px; align-items:start; }
+.parcours-img-col { position:relative; }
+.parcours-img { width:100%; aspect-ratio:4/5; object-fit:cover; filter:grayscale(20%); display:block; }
+.parcours-img-tag { position:absolute; top:24px; left:24px; background:var(--white); padding:10px 16px; font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gray); border:1px solid var(--line); }
+.tl-item { display:grid; grid-template-columns:80px 1fr; gap:30px; padding:32px 0; border-top:1px solid var(--line); position:relative; }
+.tl-item:last-child { border-bottom:1px solid var(--line); }
+.tl-year { font-family:'Bodoni Moda',serif; font-style:italic; font-size:1.2rem; color:var(--line); padding-top:4px; text-align:right; }
+.tl-dot { position:absolute; left:80px; top:38px; width:7px; height:7px; border-radius:50%; background:var(--white); border:1.5px solid var(--black); transform:translateX(-50%); }
+.tl-type { font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gray); margin-bottom:6px; }
+.tl-title { font-family:'Cormorant',serif; font-size:1.35rem; font-style:italic; margin-bottom:8px; }
+.tl-desc { font-size:.92rem; line-height:1.85; color:var(--mid); }
+
+/* CONTACT */
+.contact-section { background:var(--black); color:var(--white); padding:130px 52px; display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; }
+.contact-title { font-family:'Bodoni Moda',serif; font-size:clamp(2.8rem,4.5vw,5rem); line-height:1.0; letter-spacing:.02em; }
+.contact-title em { font-style:italic; }
+.contact-sub { font-family:'EB Garamond',serif; font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:#555; margin-top:24px; line-height:2.2; }
+.contact-right { display:flex; flex-direction:column; gap:1px; background:#1a1a1a; border:1px solid #1a1a1a; }
+.contact-item { background:var(--black); padding:28px 32px; display:flex; justify-content:space-between; align-items:center; text-decoration:none; color:var(--white); transition:background .25s; }
+.contact-item:hover { background:#111; }
+.contact-item-label { font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.28em; text-transform:uppercase; color:#555; margin-bottom:5px; }
+.contact-item-val { font-family:'Cormorant',serif; font-size:1.2rem; font-style:italic; }
+.contact-item-arrow { font-size:1rem; color:#444; }
+
+/* =============================
+   FOOTER — Inspired by Margiela
+   ============================= */
+.ft { background:var(--black); color:var(--white); font-family:'EB Garamond',serif; border-top:1px solid #111; }
+
+.ft-top {
+  display:grid; grid-template-columns:1fr auto 1fr;
+  align-items:center; padding:60px 52px 50px;
+  border-bottom:1px solid #1a1a1a;
+}
+.ft-brand { font-family:'Bodoni Moda',serif; font-size:2rem; letter-spacing:.12em; text-transform:uppercase; }
+.ft-brand em { font-style:italic; }
+.ft-brand-sub { font-family:'EB Garamond',serif; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:#444; margin-top:4px; }
+.ft-divider-v { width:1px; height:60px; background:#1a1a1a; }
+.ft-tagline { text-align:right; }
+.ft-tagline p { font-family:'Cormorant',serif; font-size:1.3rem; font-style:italic; line-height:1.6; color:#555; }
+
+.ft-main {
+  display:grid; grid-template-columns:1fr 1px 1fr 1px 1fr;
+  padding:50px 52px; gap:0;
+  border-bottom:1px solid #1a1a1a;
+}
+.ft-col { padding:0 44px; }
+.ft-col:first-child { padding-left:0; }
+.ft-col:last-child { padding-right:0; }
+.ft-sep { width:1px; background:#1a1a1a; align-self:stretch; }
+.ft-col-label {
+  font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.38em;
+  text-transform:uppercase; color:#333; margin-bottom:22px;
+  display:flex; align-items:center; gap:10px;
+}
+.ft-col-label::before { content:''; width:20px; height:1px; background:#222; }
+.ft-col-val { font-family:'Cormorant',serif; font-size:1.2rem; font-style:italic; color:#888; line-height:2; }
+.ft-col-val a { color:#666; text-decoration:none; display:block; transition:color .2s; }
+.ft-col-val a:hover { color:var(--white); }
+.ft-col-val span { display:block; font-family:'EB Garamond',serif; font-style:normal; font-size:.82rem; letter-spacing:.05em; color:#555; line-height:2; }
+
+.ft-nav-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; background:#111; border:1px solid #1a1a1a; }
+.ft-nav-item {
+  padding:12px 16px; font-family:'EB Garamond',serif; font-size:.68rem;
+  letter-spacing:.22em; text-transform:uppercase; color:#444; text-decoration:none;
+  display:block; border-bottom:1px solid #1a1a1a; transition:color .2s, background .2s;
+}
+.ft-nav-item:hover { color:var(--white); background:#0a0a0a; }
+.ft-nav-item:nth-child(n+5) { border-bottom:none; }
+
+/* Social icons — Uiverse */
+.ft-social-label {
+  font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.38em;
+  text-transform:uppercase; color:#333; margin-bottom:22px;
+  display:flex; align-items:center; gap:10px;
+}
+.ft-social-label::before { content:''; width:20px; height:1px; background:#222; }
+
+.example-2 { display:flex; gap:1px; list-style:none; background:#111; border:1px solid #1a1a1a; }
+.icon-content { position:relative; }
+.icon-content a {
+  display:flex; align-items:center; justify-content:center;
+  width:48px; height:48px; color:#555; text-decoration:none;
+  transition:color .25s, background .25s; position:relative; overflow:hidden;
+}
+.icon-content a .filled {
+  position:absolute; inset:0; transform:translateY(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1); opacity:.08;
+}
+.icon-content a[data-social="linkedin"] .filled,
+.icon-content a[data-social="github"] .filled,
+.icon-content a[data-social="instagram"] .filled,
+.icon-content a[data-social="youtube"] .filled { background:var(--white); }
+.icon-content a:hover .filled { transform:translateY(0); }
+.icon-content a:hover { color:var(--white); }
+.tooltip {
+  position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
+  background:#1a1a1a; border:1px solid #2a2a2a; color:#888;
+  font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase;
+  padding:5px 12px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.icon-content:hover .tooltip { opacity:1; }
+
+.ft-bottom {
+  display:grid; grid-template-columns:1fr auto 1fr;
+  align-items:center; padding:22px 52px; gap:20px;
+}
+.ft-copy { font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:#333; }
+.ft-logo-center { font-family:'Bodoni Moda',serif; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:#222; text-align:center; }
+.ft-status { text-align:right; display:flex; align-items:center; justify-content:flex-end; gap:10px; }
+.ft-status-dot { width:5px; height:5px; border-radius:50%; background:#2a2a2a; position:relative; }
+.ft-status-dot::after { content:''; position:absolute; inset:-2px; border-radius:50%; border:1px solid #1a1a1a; }
+.ft-status-text { font-family:'EB Garamond',serif; font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:#333; }
+
+/* PROJECT DOC LINK */
+.project-doc-link {
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'EB Garamond',serif; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gray); text-decoration:none; border:1px solid var(--line);
+  padding:8px 16px; margin-top:14px; transition:background .25s, color .25s, border-color .25s;
+}
+.project-doc-link:hover { background:var(--black); color:var(--white); border-color:var(--black); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .9s ease,transform .9s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+@media (max-width:900px) {
+  nav { padding:0 24px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; }
+  .hero-right { display:none; }
+  .hero-left { padding:50px 24px; justify-content:center; }
+  .section,.skills-section,.projects-section,.parcours-section,.contact-section { padding:70px 24px; }
+  .about-wrap,.skills-header,.parcours-wrap,.contact-section { grid-template-columns:1fr; gap:50px; }
+  .projects-grid { grid-template-columns:1fr; }
+  .ft-top { grid-template-columns:1fr; gap:20px; padding:40px 24px 30px; }
+  .ft-divider-v { display:none; }
+  .ft-tagline { text-align:left; }
+  .ft-main { grid-template-columns:1fr; padding:30px 24px; gap:30px; }
+  .ft-sep { display:none; }
+  .ft-col { padding:0; }
+  .ft-bottom { grid-template-columns:1fr; padding:20px 24px; gap:8px; }
+  .ft-logo-center,.ft-status { text-align:left; }
+  .ft-status { justify-content:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- BANDEAU -->
+<div class="topbar">
+  <div class="topbar-track">
+    <span>BTS SIO · Option SISR</span><span>Technicien réseau</span><span>Disponible en alternance</span><span>Paris, France</span><span>2024 — 2026</span><span>BTS SIO · Option SISR</span><span>Technicien réseau</span><span>Disponible en alternance</span><span>Paris, France</span><span>2024 — 2026</span><span>BTS SIO · Option SISR</span><span>Technicien réseau</span><span>Disponible en alternance</span><span>Paris, France</span><span>2024 — 2026</span><span>BTS SIO · Option SISR</span><span>Technicien réseau</span><span>Disponible en alternance</span><span>Paris, France</span><span>2024 — 2026</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    Portfolio
+    <span>BTS SIO · SISR</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-year">2024 — 2026</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Technicien · Créateur</div>
+    <h1 class="hero-name">Peter<br><em>Michel</em></h1>
+    <div class="hero-role">BTS Services Informatiques aux Organisations &nbsp;·&nbsp; Option SISR</div>
+    <div class="hero-scroll">Découvrir</div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img"
+      src="https://i.pinimg.com/1200x/a0/e9/66/a0e9663721eea4c8008cbe2406cd56ad.jpg"
+      alt="Développement"/>
+    <div class="hero-img-overlay"></div>
+    <div class="hero-counter">01</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label" data-n="01">Profil</div>
+  <div class="about-wrap">
+    <div class="about-text-col reveal">
+      <p class="about-season">BTS SIO · 2024–2026</p>
+      <h2 class="about-heading">
+        Étudiant fasciné <br>
+        <em>par l'informatique et le Sport Automobile</em>
+      </h2>
+      <p class="about-text">
+        En première année de BTS SIO option SISR, j'allie passions et
+        études en composant mes projets toujours en lien avec celles-ci.
+      </p>
+      <p class="about-text">
+        Passionné par les nouvelles technologies et leurs implémentation dans le sport autotmobile,
+        je cherche constamment à 
+        monter en compétences et à relever de nouveaux défis.
+      </p>
+    </div>
+    <div class="about-photo-wrap reveal">
+      <img class="about-photo"
+        src="https://i.pinimg.com/1200x/d3/3f/55/d33f55c7b589a7c74143ee49d1a8634e.jpg"
+        alt="Photo de profil"/>
+      <div class="about-photo-caption">
+        <span>Disponible en alternance</span>
+        <span>Paris, FR</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-info-row reveal">
+    <div class="info-cell"><div class="info-cell-label">Formation</div><div class="info-cell-val">BTS SIO SISR</div></div>
+    <div class="info-cell"><div class="info-cell-label">Promotion</div><div class="info-cell-val">2024 — 2026</div></div>
+    <div class="info-cell"><div class="info-cell-label">Localisation</div><div class="info-cell-val">Paris, France</div></div>
+    <div class="info-cell"><div class="info-cell-label">Statut</div><div class="info-cell-val">En recherche d'alternance</div></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-label" data-n="02">Compétences</div>
+  <div class="skills-header">
+    <h2 class="skills-title reveal">Stack<br><em>technique</em></h2>
+    <p class="skills-intro reveal"></p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-num">I</div>
+      <div class="skill-name">Développement Web</div>
+      <div class="skill-desc">Conception et réalisation de site web .</div>
+      <div class="skill-tags"><span class="skill-tag">PHP</span><span class="skill-tag">JavaScript</span><span class="skill-tag">HTML/CSS</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-num">II</div>
+      <div class="skill-name">Base de données</div>
+      <div class="skill-desc">Modélisation, création et optimisation de bases.</div>
+      <div class="skill-tags"><span class="skill-tag">MySQL</span><span class="skill-tag">SQL</span><span class="skill-tag">MariaDB</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-num">III</div>
+      <div class="skill-name">Systèmes & Réseaux</div>
+      <div class="skill-desc">Administration système, virtualisation et gestion d'infrastructure dans un environnement professionnel.</div>
+      <div class="skill-tags"><span class="skill-tag">Linux</span><span class="skill-tag">Windows Server</span><span class="skill-tag">TCP/IP</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-label" data-n="03">Réalisations</div>
+  <h2 class="projects-title reveal">Projets</h2>
+  <div class="projects-grid">
+
+     <div class="project-card reveal">
+      <div class="project-img-wrap">
+        <img class="project-img" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=80" alt="Site vitrine"/>
+        <div class="project-img-overlay"></div>
+        <div class="project-num-overlay">01</div>
+      </div>
+      <div class="project-body">
+        <div class="project-cat">Application Réseaux et Web</div>
+        <div class="project-title">Création d'un site vitrine</div>
+        <div class="project-desc">Mise en place d'un site vitrine interne sécurisé, hébergé sur un serveur Linux Debian avec sécurisation SSH et base de données MariaDB.</div>
+        <div class="project-stack"><span class="project-tech">PHP</span><span class="project-tech">Apache</span><span class="project-tech">MariaDB</span><span class="project-tech">SSH</span></div>
+        <a href="Projet_BTS_SIO_sitevitrine.pdf" target="_blank" class="project-doc-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.7 19.7 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029z"/></svg>
+          Projet Site Vitrine
+        </a>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+     <div class="project-card reveal">
+      <div class="project-img-wrap">
+        <img class="project-img" src="https://i.pinimg.com/736x/87/a2/3a/87a23affe85f02e2fc821e1ad5cde3eb.jpg" alt="Serveur Assetto Corsa"/>
+        <div class="project-img-overlay"></div>
+        <div class="project-num-overlay">02</div>
+      </div>
+      <div class="project-body">
+        <div class="project-cat">Administration Système · Gaming</div>
+        <div class="project-title">Serveur Assetto Corsa</div>
+        <div class="project-desc">Déploiement et administration d'un serveur de jeu Assetto Corsa sur Linux, avec gestion des configurations, des sessions de course et de la supervision du service.</div>
+        <div class="project-stack"><span class="project-tech">Linux</span><span class="project-tech">Debian</span><span class="project-tech">SSH</span><span class="project-tech">Bash</span></div>
+        <a href="Serveur_Assetto_Corsa_BTS_SIO.pptx.pdf" target="_blank" class="project-doc-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.7 19.7 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029z"/></svg>
+          Présentation Assetto Corsa
+        </a>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section class="parcours-section" id="parcours">
+  <div class="section-label" data-n="04">Parcours</div>
+  <div class="parcours-wrap">
+    <div class="parcours-img-col reveal">
+      <img class="parcours-img"
+        src="https://coachtestprep.s3.amazonaws.com/direct-uploads/user-13763/6b2e342a-16e3-4e73-8a3e-8740c31d979d/formation-photo-noir-et-blanc-photo-jcdichant-4.jpg"
+        alt="Formation"/>
+      <div class="parcours-img-tag">Formation · Expérience</div>
+    </div>
+    <div class="reveal">
+      <div class="tl-item">
+        <div class="tl-year">2026</div>
+        <div class="tl-dot"></div>
+        <div><div class="tl-type">Formation — En cours</div><div class="tl-title">BTS SIO Option SISR</div><div class="tl-desc">Nexa Digital School. Formation en initial axée sur l'admnistration réseaux et sa sécurisation.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-dot"></div>
+        <div><div class="tl-type">Diplôme</div><div class="tl-title">Baccalauréat STMG</div><div class="tl-desc">Lycée Léopold Sédar Senghor — 78200. Spécialité Systèmes d'Information et de Gestion.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER — Inspired by Maison Margiela -->
+<footer class="ft">
+
+  <div class="ft-top">
+    <div>
+      <div class="ft-brand">Port<em>folio</em></div>
+      <div class="ft-brand-sub">BTS SIO · Option SISR · 2024–2026</div>
+    </div>
+    <div class="ft-divider-v"></div>
+    <div class="ft-tagline">
+    </div>
+  </div>
+
+  <div class="ft-main">
+
+    <div class="ft-col">
+      <div class="ft-col-label">Navigation</div>
+      <div class="ft-nav-grid">
+        <a href="#about" class="ft-nav-item">Profil</a>
+        <a href="#skills" class="ft-nav-item">Compétences</a>
+        <a href="#projects" class="ft-nav-item">Projets</a>
+        <a href="#parcours" class="ft-nav-item">Parcours</a>
+        <a href="#contact" class="ft-nav-item">Contact</a>
+        <a href="#" class="ft-nav-item">CV PDF</a>
+      </div>
+    </div>
+
+    <div class="ft-sep"></div>
+
+    <div class="ft-col">
+      <div class="ft-col-label">Contact</div>
+      <div class="ft-col-val">
+        <a href="mailto:peter.mchl03@email.fr">peter.mchl03@gmail.com</a>
+        <span>Paris, France</span>
+        <span>En recherche d'alternance</span>
+      </div>
+    </div>
+
+    <div class="ft-sep"></div>
+
+    <div class="ft-col">
+      <div class="ft-social-label">Suivez-moi</div>
+      <ul class="example-2">
+        <li class="icon-content">
+          <a href="https://linkedin.com/" aria-label="LinkedIn" data-social="linkedin">
+            <div class="filled"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+            </svg>
+          </a>
+          <div class="tooltip">LinkedIn</div>
+        </li>
+        <li class="icon-content">
+          <a href="https://github.com/" aria-label="GitHub" data-social="github">
+            <div class="filled"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+            </svg>
+          </a>
+          <div class="tooltip">GitHub</div>
+        </li>
+        <li class="icon-content">
+          <a href="https://instagram.com/" aria-label="Instagram" data-social="instagram">
+            <div class="filled"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+            </svg>
+          </a>
+          <div class="tooltip">Instagram</div>
+        </li>
+        <li class="icon-content">
+          <a href="https://youtube.com/" aria-label="Youtube" data-social="youtube">
+            <div class="filled"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+            </svg>
+          </a>
+          <div class="tooltip">Youtube</div>
+        </li>
+      </ul>
+
+      <div style="margin-top:30px;">
+        <div class="ft-col-label" style="margin-bottom:14px;">Localisation</div>
+        <div class="ft-col-val">
+          <span>Paris, Île-de-France</span>
+          <span>France</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ft-bottom">
+    <p class="ft-copy">© 2026 — Portfolio BTS SIO · Tous droits réservés</p>
+    <div class="ft-logo-center">SISR · 2024–2026</div>
+    <div class="ft-status">
+      <div class="ft-status-dot"></div>
+      <span class="ft-status-text">Systèmes & Réseaux</span>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('cur-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  (function anim() {
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+    rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(anim);
+  })();
+  document.querySelectorAll('a,.project-card,.skill-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform='translate(-50%,-50%) scale(2)'; ring.style.opacity='.2'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='.4'; });
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el,i) => {
+    el.style.transitionDelay=(i%4)*0.1+'s';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
