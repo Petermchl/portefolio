@@ -357,75 +357,14 @@ nav {
 .reveal { opacity:0; transform:translateY(22px); transition:opacity .9s ease,transform .9s ease; }
 .reveal.visible { opacity:1; transform:none; }
 
-/* HAMBURGER BUTTON */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  z-index: 400;
-}
-.nav-hamburger span {
-  display: block;
-  width: 22px;
-  height: 1.5px;
-  background: var(--black);
-  transition: transform .3s ease, opacity .3s ease;
-}
-.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-/* MOBILE OVERLAY MENU */
-.nav-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--white);
-  z-index: 350;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 36px;
-}
-.nav-overlay.open { display: flex; }
-.nav-overlay a {
-  font-family: 'Bodoni Moda', serif;
-  font-size: 2rem;
-  font-style: italic;
-  letter-spacing: .06em;
-  text-decoration: none;
-  color: var(--black);
-  transition: opacity .2s;
-}
-.nav-overlay a:hover { opacity: .5; }
-.nav-overlay-close {
-  position: absolute;
-  top: 36px + 64px;
-  right: 24px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--black);
-}
-
 @media (max-width:900px) {
   nav { padding:0 24px; }
   .nav-links { display:none; }
-  .nav-hamburger { display:flex; }
   .hero { grid-template-columns:1fr; }
   .hero-right { display:none; }
   .hero-left { padding:50px 24px; justify-content:center; }
   .section,.skills-section,.projects-section,.parcours-section,.contact-section { padding:70px 24px; }
   .about-wrap,.skills-header,.parcours-wrap,.contact-section { grid-template-columns:1fr; gap:50px; }
-  .about-text-col { padding: 0; }
-  .about-info-row { grid-template-columns: repeat(2, 1fr); }
-  .skills-grid { grid-template-columns:1fr; }
   .projects-grid { grid-template-columns:1fr; }
   .ft-top { grid-template-columns:1fr; gap:20px; padding:40px 24px 30px; }
   .ft-divider-v { display:none; }
@@ -436,16 +375,6 @@ nav {
   .ft-bottom { grid-template-columns:1fr; padding:20px 24px; gap:8px; }
   .ft-logo-center,.ft-status { text-align:left; }
   .ft-status { justify-content:flex-start; }
-  .contact-section { grid-template-columns:1fr; gap:50px; }
-  .parcours-wrap { grid-template-columns:1fr; gap:40px; }
-  .tl-item { grid-template-columns:60px 1fr; gap:16px; }
-}
-
-@media (max-width:480px) {
-  .about-info-row { grid-template-columns: 1fr 1fr; }
-  .hero-name { font-size: clamp(2.8rem, 14vw, 4rem); }
-  .synthese-iframe-wrap iframe { height: 340px; }
-  .veille-card { padding: 30px 22px 24px; }
 }
 </style>
 </head>
@@ -477,22 +406,7 @@ nav {
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-year">2024 — 2026</div>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
-
-<!-- MOBILE OVERLAY MENU -->
-<div class="nav-overlay" id="nav-overlay">
-  <button id="overlay-close" aria-label="Fermer" style="position:absolute;top:50px;right:24px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--black);">✕</button>
-  <a href="#about" class="overlay-link">Profil</a>
-  <a href="#skills" class="overlay-link">Compétences</a>
-  <a href="#projects" class="overlay-link">Projets</a>
-  <a href="#parcours" class="overlay-link">Parcours</a>
-  <a href="#synthese" class="overlay-link">Synthèse BTS</a>
-  <a href="#veille" class="overlay-link">Veille</a>
-  <a href="#contact" class="overlay-link">Contact</a>
-</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -595,8 +509,8 @@ nav {
         <div class="project-title">Création d'un site vitrine</div>
         <div class="project-desc">Mise en place d'un site vitrine interne sécurisé, hébergé sur un serveur Linux Debian avec sécurisation SSH et base de données MariaDB.</div>
         <div class="project-stack"><span class="project-tech">PHP</span><span class="project-tech">Apache</span><span class="project-tech">MariaDB</span><span class="project-tech">SSH</span></div>
-        <a href="https://drive.google.com/file/d/REMPLACER_ID_PDF_SITE_VITRINE/view" target="_blank" class="project-doc-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.7 19.7 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029z"/></svg>
+        <a href="https://drive.google.com/file/d/1u2zrLN1Aw0xJh1XX8HT1dE0usyYdYjzD/view?usp=sharing" target="_blank" class="project-doc-link">
+          <svg xmlns="https://drive.google.com/file/d/1u2zrLN1Aw0xJh1XX8HT1dE0usyYdYjzD/view?usp=sharing" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.7 19.7 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029z"/></svg>
           Projet Site Vitrine
         </a>
       </div>
@@ -613,8 +527,8 @@ nav {
         <div class="project-title">Serveur Assetto Corsa</div>
         <div class="project-desc">Déploiement et administration d'un serveur de jeu Assetto Corsa sur Linux, avec gestion des configurations, des sessions de course et de la supervision du service.</div>
         <div class="project-stack"><span class="project-tech">Linux</span><span class="project-tech">Debian</span><span class="project-tech">SSH</span><span class="project-tech">Bash</span></div>
-        <a href="https://drive.google.com/file/d/REMPLACER_ID_PDF_ASSETTO/view" target="_blank" class="project-doc-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.7 19.7 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029z"/></svg>
+        <a href="https://drive.google.com/file/d/1aNhkUQIefCPiYVC5a8e9wY16XcjoA2ds/view?usp=sharing" target="_blank" class="project-doc-link">
+          <svg xmlns="https://drive.google.com/file/d/1aNhkUQIefCPiYVC5a8e9wY16XcjoA2ds/view?usp=sharing" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.7 19.7 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029z"/></svg>
           Présentation Assetto Corsa
         </a>
       </div>
@@ -662,21 +576,20 @@ nav {
   </p>
   <div class="synthese-iframe-wrap reveal">
     <iframe
-      src="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/htmlview?usp=sharing"
+      src="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/edit?usp=drive_link&ouid=102313380074112588986&rtpof=true&sd=true"
       title="Tableau de synthèse BTS SIO E5 2026"
       loading="lazy"
       id="synthese-frame"
-      allowfullscreen
     ></iframe>
     <noscript>
       <p style="padding:24px;font-family:'EB Garamond',serif;color:var(--gray);">
         Le tableau nécessite JavaScript pour s'afficher.
-        <a href="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/export?format=xlsx">Télécharger le fichier XLSX</a>
+        <a href="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/edit?usp=drive_link&ouid=102313380074112588986&rtpof=true&sd=true" download>Télécharger le fichier XLSX</a>
       </p>
     </noscript>
-    <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 20px;background:var(--white);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 20px;background:var(--white);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
       <span style="font-family:'EB Garamond',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);">Épreuve E5 · BTS SIO 2026</span>
-      <a href="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/export?format=xlsx"
+      <a href="https://docs.google.com/spreadsheets/d/11ZCjX4zffrtD7MtO2csBhAjiXsbQ2LBZ/edit?usp=drive_link&ouid=102313380074112588986&rtpof=true&sd=true" download
         style="font-family:'EB Garamond',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--black);text-decoration:none;display:flex;align-items:center;gap:7px;border:1px solid var(--line);padding:7px 14px;transition:background .25s,color .25s;"
         onmouseover="this.style.background='#080808';this.style.color='#fff';"
         onmouseout="this.style.background='';this.style.color='#080808';">
@@ -852,35 +765,20 @@ nav {
 </footer>
 
 <script>
-  // Custom cursor (desktop only)
   const cur = document.getElementById('cur');
   const ring = document.getElementById('cur-ring');
-  if (window.matchMedia('(pointer: fine)').matches) {
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-    (function anim() {
-      cur.style.left=mx+'px'; cur.style.top=my+'px';
-      rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
-      ring.style.left=rx+'px'; ring.style.top=ry+'px';
-      requestAnimationFrame(anim);
-    })();
-    document.querySelectorAll('a,.project-card,.skill-card').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.transform='translate(-50%,-50%) scale(2)'; ring.style.opacity='.2'; });
-      el.addEventListener('mouseleave', () => { ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='.4'; });
-    });
-  }
-
-  // Hamburger menu
-  const hamburger = document.getElementById('hamburger');
-  const overlay = document.getElementById('nav-overlay');
-  const overlayClose = document.getElementById('overlay-close');
-  function openMenu() { overlay.classList.add('open'); hamburger.classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeMenu() { overlay.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow=''; }
-  hamburger.addEventListener('click', openMenu);
-  overlayClose.addEventListener('click', closeMenu);
-  document.querySelectorAll('.overlay-link').forEach(a => a.addEventListener('click', closeMenu));
-
-  // Scroll reveal
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  (function anim() {
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+    rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(anim);
+  })();
+  document.querySelectorAll('a,.project-card,.skill-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform='translate(-50%,-50%) scale(2)'; ring.style.opacity='.2'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='.4'; });
+  });
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.12 });
